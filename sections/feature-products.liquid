@@ -19,5 +19,24 @@
     {% endfor %} {% endif %} {% endfor %}
 </div>
 
+<script>
+    function add_to_cart(p_id) {
+        let n_p_id = parseInt(p_id);
+        fetch('/cart/add.js', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'items': [{
+                        'quantity': 1,
+                        'id': n_p_id
+                    }]
+                })
+            })
+            .then(response => console.log(response))
+    }
+</script>
+
 {% schema %} { "name":"Feature Products", "settings":[ { "type":"text", "id":"title", "label":"title", "default":"Feature Products" }, { "type":"collection", "id":"collection", "label":"Collections" }, { "type":"range", "id":"product_display_count", "min":1,
 "max":4, "step":1, "unit":"prd", "label":"Product display count", "default":1 } ], "presets":[ { "name":"Feature Products", "category":"custom" } ] } {% endschema %}
