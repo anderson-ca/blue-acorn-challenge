@@ -1,0 +1,23 @@
+<h1 id="victory">{{ section.settings.title }}</h1>
+
+<div class="feature-products-container">
+    {% for collection in collections %} {% if section.settings.collection == collection.handle %} {% for product in collection.products %} {% if forloop.index > section.settings.product_display_count %} {% break %} {% endif %}
+
+    <div class="product-card">
+        <a href={{shop.url | append: product.url}}>
+            <img src={{product.featured_image | image_url: width: 300, height: 300}} alt="">
+            <div class="product-footer">
+                <h4>{{product.title}}</h4>
+            </div>
+        </a>
+        <p>{{product.price | money}}</p>
+        {% assign product_id = product.variants[0].id | json %}
+        <button onClick="add_to_cart('{{product_id}}')" class="add-to-cart">ADD TO CART</button>
+    </div>
+
+
+    {% endfor %} {% endif %} {% endfor %}
+</div>
+
+{% schema %} { "name":"Feature Products", "settings":[ { "type":"text", "id":"title", "label":"title", "default":"Feature Products" }, { "type":"collection", "id":"collection", "label":"Collections" }, { "type":"range", "id":"product_display_count", "min":1,
+"max":4, "step":1, "unit":"prd", "label":"Product display count", "default":1 } ], "presets":[ { "name":"Feature Products", "category":"custom" } ] } {% endschema %}
