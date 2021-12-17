@@ -9700,3 +9700,20 @@ hr {
 .product-footer {
     padding: 2px 16px;
 }
+
+.add-to-cart {
+    margin: auto;
+    background-color: #886DFF;
+    letter-spacing: .1vw;
+    font-weight: medium;
+    color: #ffffff;
+    border: none;
+    width: 15vw;
+}
+
+.add-to-cart:hover {
+    background-color: #fdfdfd;
+    border: solid 3px #886DFF;
+    color: #000000;
+    font-weight: bold;
+}
